@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import logo from './assets/images/logo-sofia-en-voz-alta.png';
 import isotipo from './assets/images/isotipo-sofia-en-voz-alta.png';
 import sofiaFoto from './assets/images/sofia-foto.png';
+import trabajo1 from './assets/images/1.png';
+import trabajo2 from './assets/images/2.png';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -158,7 +160,7 @@ function ContactForm() {
 
     try {
       const response = await fetch(
-        'https://sofiaenvozalta.onrender.com/api/contact',
+        'http://localhost:5090/api/contact',
         {
           method: 'POST',
 
@@ -955,59 +957,24 @@ export default function App() {
                   Mejor te mostramos.
                 </h2>
               </div>
-
-              <p className="lead">
-                Aquí los proyectos deben
-                verse como piezas de
-                identidad de verdad:
-                visuales fuertes, contexto
-                breve y ninguna promesa que
-                no podamos demostrar.
-              </p>
             </div>
 
             <div className="work-grid">
               <article className="case reveal">
-                <div className="case-visual">
-                  <div className="curve-a" />
-                  <div className="curve-b" />
-
-                  <div className="line">
-                    <svg
-                      viewBox="0 0 700 140"
-                      preserveAspectRatio="none"
-                    >
-                      <path d="M-20 100 C100 20,220 130,350 60 C470 0,580 125,720 48" />
-                    </svg>
-                  </div>
-
+                <div className="case-visual case-image-wrap">
                   <img
-                    className="case-isotipo"
-                    src={isotipo}
-                    alt=""
+                    className="case-image"
+                    src={trabajo1}
+                    alt="Antes y después de identidad visual para Remotos"
                   />
-
-                  <div className="case-chip">
-                    IDENTIDAD / ANTES →
-                    DESPUÉS
-                  </div>
                 </div>
 
                 <div className="case-copy">
                   <h3>
-                    Una marca que necesitaba
-                    dejar de sentirse
-                    improvisada.
+                    De un logo saturado a una
+                    marca más clara y fácil de
+                    reconocer.
                   </h3>
-
-                  <p>
-                    En la versión final este
-                    espacio se reemplaza por
-                    un proyecto real,
-                    mostrando qué necesitaba
-                    el negocio y qué
-                    elementos trabajamos.
-                  </p>
 
                   <div className="case-meta">
                     <div>
@@ -1016,8 +983,8 @@ export default function App() {
                       </b>
 
                       <span>
-                        Ordenar elementos que
-                        ya existían.
+                        Reducir ruido visual y
+                        ordenar la idea de marca.
                       </span>
                     </div>
 
@@ -1027,9 +994,9 @@ export default function App() {
                       </b>
 
                       <span>
-                        Logo, versiones,
-                        colores y reglas
-                        acordadas.
+                        Símbolo, limpieza,
+                        proporción y dirección
+                        visual.
                       </span>
                     </div>
                   </div>
@@ -1037,62 +1004,20 @@ export default function App() {
               </article>
 
               <article className="case reveal">
-                <div className="case-visual">
-                  <div
-                    className="curve-a"
-                    style={{
-                      background:
-                        'var(--rasp)',
-                      width: 240,
-                      height: 240,
-                    }}
-                  />
-
-                  <div
-                    className="curve-b"
-                    style={{
-                      background:
-                        '#ece5eb',
-                      width: 340,
-                      height: 340,
-                    }}
-                  />
-
-                  <div className="line">
-                    <svg
-                      viewBox="0 0 700 140"
-                      preserveAspectRatio="none"
-                    >
-                      <path d="M-20 40 C120 120,260 0,390 70 C520 140,600 30,720 88" />
-                    </svg>
-                  </div>
-
+                <div className="case-visual case-image-wrap">
                   <img
-                    className="case-isotipo"
-                    src={isotipo}
-                    alt=""
+                    className="case-image"
+                    src={trabajo2}
+                    alt="Antes y después de identidad visual para Café Élite"
                   />
-
-                  <div className="case-chip">
-                    IDENTIDAD / APLICACIONES
-                  </div>
                 </div>
 
                 <div className="case-copy">
                   <h3>
-                    Un negocio con buenas
-                    ideas, pero sin una
-                    misma forma de verse.
+                    Una imagen más cuidada para
+                    que el negocio se sintiera
+                    mejor presentado.
                   </h3>
-
-                  <p>
-                    El diseño del portafolio
-                    también funciona como
-                    una prueba visual de
-                    criterio: menos mockup
-                    genérico y más sistema
-                    gráfico con intención.
-                  </p>
 
                   <div className="case-meta">
                     <div>
@@ -1101,9 +1026,8 @@ export default function App() {
                       </b>
 
                       <span>
-                        Que todo se sintiera
-                        parte del mismo
-                        negocio.
+                        Verse más consistente,
+                        profesional y memorable.
                       </span>
                     </div>
 
@@ -1113,9 +1037,9 @@ export default function App() {
                       </b>
 
                       <span>
-                        Imagen, versiones y
-                        documentación
-                        acordada.
+                        Logo, aplicaciones,
+                        estilo visual y coherencia
+                        de marca.
                       </span>
                     </div>
                   </div>
