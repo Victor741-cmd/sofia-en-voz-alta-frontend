@@ -159,19 +159,20 @@ function ContactForm() {
     );
 
     try {
-      const response = await fetch(
-        'http://localhost:5090/api/contact',
-        {
-          method: 'POST',
+      const API_URL =
+  import.meta.env.VITE_API_URL ||
+  'https://sofiaenvozalta.onrender.com';
 
-          headers: {
-            'Content-Type':
-              'application/json',
-          },
-
-          body: JSON.stringify(request),
-        }
-      );
+const response = await fetch(
+  `${API_URL}/api/contact`,
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(request),
+  }
+);
 
       let result = null;
 
