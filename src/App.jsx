@@ -603,153 +603,268 @@ export default function App() {
           </div>
         </section>
 
-        <section
-          id="problema"
-          className="section problem"
-        >
-          <div
-            className="global-thread"
-            aria-hidden="true"
-          >
-            <svg
-              viewBox="0 0 1440 1100"
-              preserveAspectRatio="none"
-            >
-              <path d="M-40 130 C180 30,250 270,470 180 C650 110,710 260,900 165 C1090 70,1220 235,1480 110" />
-
-              <circle
-                cx="245"
-                cy="165"
-                r="5"
-              />
-
-              <circle
-                cx="900"
-                cy="165"
-                r="5"
-              />
-            </svg>
-          </div>
-
+        <section id="problema" className="section miga-section">
           <div className="container">
-            <div className="problem-head reveal">
-              <div>
-                <span className="eyebrow">
-                  Cuando tu marca se arma por
-                  partes
-                </span>
+            <span className="eyebrow reveal">
+              Cuando cada cosa va por su lado
+            </span>
 
-                <h2 className="display">
-                  Tu marca no debería
-                  sentirse armada por partes.
-                </h2>
+            <h2 className="miga-main-title reveal">
+              Así se ve una marca cuando cada pieza se resuelve por separado.
+            </h2>
+
+            <p className="miga-intro reveal">
+              Post por un lado. Story por otro. Empaque por otro. Y luego la misma
+              pregunta de siempre:{' '}
+              <strong>“¿cómo hacemos esto?”</strong>
+            </p>
+
+            <div className="miga-case-name reveal">
+              <div className="miga-case-brand">
+                <strong>MIGA</strong>
+                <span>Panadería &amp; Café</span>
               </div>
 
-              <p className="lead">
-                Un logo por un lado.
-                Colores por otro. Letras que
-                cambian. Publicaciones que
-                parecen de negocios
-                distintos.{' '}
-                <strong>
-                  La idea es que todo
-                  empiece a sentirse parte
-                  del mismo negocio.
-                </strong>
-              </p>
+              <div className="miga-case-hint">
+                Mismo negocio. Mismas necesidades. Lo único que cambia es cómo se
+                presenta.
+              </div>
             </div>
 
-            <div className="brand-lab reveal">
-              <div className="lab-grid">
-                <div className="scattered">
-                  <div className="lab-title">
-                    Antes: cada cosa por su
-                    lado
-                  </div>
+            <div className="miga-compare reveal">
+              <article className="miga-side miga-before">
+                <div className="miga-side-head">
+                  <span className="miga-side-label miga-before-label">Antes</span>
 
-                  <div className="scrap logo">
-                    LOGO_v7.png
+                  <div className="miga-side-head-copy">
+                    <strong>Cada pieza parecía de un negocio diferente.</strong>
+                    <span>
+                      Nada estaba necesariamente “mal”. Cada cosa se resolvía por
+                      separado.
+                    </span>
                   </div>
-
-                  <div className="scrap color">
-                    ¿este rosado?
-                  </div>
-
-                  <div className="scrap type">
-                    Poppins / Montserrat / ¿?
-                  </div>
-
-                  <div className="scrap msg">
-                    “hazlo parecido al post
-                    de la semana pasada”
-                  </div>
-
-                  <div className="scrap post" />
                 </div>
 
-                <div className="bridge">
-                  <svg
-                    viewBox="0 0 130 470"
-                    preserveAspectRatio="none"
-                  >
-                    <path d="M5 70 C110 120,10 200,110 245 C10 300,100 365,5 420" />
+                <div className="miga-canvas">
+                  <div className="miga-before-logo">
+                    <div>
+                      <div className="miga-before-script">Miga</div>
+                      <div className="miga-before-sub">Panadería artesanal</div>
+                    </div>
+                    <div className="miga-wheat">🌾</div>
+                  </div>
+
+                  <div className="miga-before-post">
+                    <div className="miga-oldmark">MIGA PAN</div>
+                    <div className="miga-promo-hero">
+                      2x1
+                      <br />
+                      EN CROISSANTS
+                    </div>
+                    <div className="miga-promo-sub">
+                      Solo hoy · hasta agotar existencias
+                    </div>
+                  </div>
+
+                  <div className="miga-before-story">
+                    <div className="miga-doodle">🤎</div>
+                    <strong>
+                      HOY HAY
+                      <br />
+                      PAN DE
+                      <br />
+                      CHOCOLATE
+                    </strong>
+                    <span>otra letra, otro color, otra vibra</span>
+                  </div>
+
+                  <div className="miga-before-bag">
+                    <div className="miga-cup">☕</div>
+                    <div className="miga-bag-title">MIGA CAFÉ</div>
+                    <div className="miga-bag-sub">café • pan • algo rico</div>
+                  </div>
+
+                  <div className="miga-before-menu">
+                    <div className="miga-menu-brand-old">Miga Café</div>
+                    <h3>MENÚ</h3>
+                    <p>
+                      Croissant .......... $
+                      <br />
+                      Latte ................. $
+                      <br />
+                      Pan chocolate .... $
+                    </p>
+                  </div>
+
+                  <div className="miga-before-chat">
+                    <div className="miga-chat-top">
+                      <span className="miga-avatar" />
+                      <strong>Diseño / Community</strong>
+                    </div>
+                    <div className="miga-bubble">¿Cuál logo pongo?</div>
+                    <div className="miga-bubble miga-bubble-me">El marrón.</div>
+                    <div className="miga-bubble">Tengo tres marrones 😅</div>
+                    <div className="miga-bubble miga-bubble-me">
+                      Pon el que usamos la semana pasada.
+                    </div>
+                  </div>
+
+                  <div className="miga-micro-note miga-mn1">
+                    cada pieza “bonita” por su lado
+                  </div>
+                  <div className="miga-micro-note miga-mn2">
+                    pero ninguna parece hermana de la otra
+                  </div>
+
+                  <div className="miga-before-foot">
+                    <strong>Cada cosa sale diferente.</strong>
+                    <span>Logo · post · story · empaque · menú</span>
+                  </div>
+                </div>
+              </article>
+
+              <div className="miga-transition">
+                <div className="miga-converge" aria-hidden="true">
+                  <svg viewBox="0 0 114 760" preserveAspectRatio="none">
+                    <path d="M0 120 C55 160,45 280,57 380 C69 470,55 600,114 635" />
+                    <path d="M0 240 C65 250,40 325,57 380 C75 445,55 520,114 520" />
+                    <path d="M0 560 C60 520,42 430,57 380 C72 330,54 240,114 180" />
                   </svg>
+                </div>
 
-                  <div className="arrow">
-                    →
+                <div className="miga-order-chip">
+                  <div>
+                    <strong>
+                      Ponemos
+                      <br />
+                      orden
+                    </strong>
+                    <span>→</span>
                   </div>
                 </div>
 
-                <div className="organized">
-                  <div className="lab-title">
-                    Después: una misma marca
-                  </div>
-
-                  <div className="brand-board">
-                    <div className="board-top">
-                      <img
-                        src={logo}
-                        alt="Sofía en Voz Alta"
-                      />
-                    </div>
-
-                    <div className="board-body">
-                      <div className="palette">
-                        <div className="swatch sw1" />
-                        <div className="swatch sw2" />
-                        <div className="swatch sw3" />
-                        <div className="swatch sw4" />
-                      </div>
-
-                      <div className="type-row">
-                        <strong>
-                          Aa
-                        </strong>
-
-                        <span>
-                          mismas letras
-                          <br />
-                          misma intención
-                        </span>
-                      </div>
-
-                      <div className="msg-card">
-                        Una forma de hablar
-                        que sí se siente
-                        parte de tu negocio.
-                      </div>
-                    </div>
-                  </div>
+                <div className="miga-order-note">
+                  mismas piezas · una misma marca
                 </div>
               </div>
+
+              <article className="miga-side miga-after">
+                <div className="miga-side-head">
+                  <span className="miga-side-label miga-after-label">Después</span>
+
+                  <div className="miga-side-head-copy">
+                    <strong>Distintas piezas. La misma marca.</strong>
+                    <span>
+                      Post, story, empaque o menú: cambia la pieza, pero MIGA sigue
+                      siendo MIGA.
+                    </span>
+                  </div>
+                </div>
+
+                <div className="miga-canvas">
+                  <div className="miga-after-logo">
+                    <div className="miga-mark">
+                      <div className="miga-symbol" />
+                      <div className="miga-word">
+                        miga<span>.</span>
+                      </div>
+                    </div>
+                    <div className="miga-after-sub">
+                      Panadería &amp; Café · hecho todos los días
+                    </div>
+                  </div>
+
+                  <div className="miga-after-palette">
+                    <span className="miga-ap1" />
+                    <span className="miga-ap2" />
+                    <span className="miga-ap3" />
+                    <span className="miga-ap4" />
+                  </div>
+
+                  <div className="miga-after-post">
+                    <div className="miga-mini-logo">
+                      miga<span>.</span>
+                    </div>
+                    <div className="miga-offer">
+                      2x1 en
+                      <br />
+                      croissants.
+                    </div>
+                    <div className="miga-offer-sub">
+                      El mismo plan rico. Mejor presentado.
+                    </div>
+                    <div className="miga-croissant">🥐</div>
+                  </div>
+
+                  <div className="miga-after-story">
+                    <div className="miga-story-line" />
+                    <div className="miga-bean">🍫</div>
+                    <strong>
+                      Hoy hay
+                      <br />
+                      pan de
+                      <br />
+                      chocolate.
+                    </strong>
+                    <span>recién horneado · hasta agotar</span>
+                  </div>
+
+                  <div className="miga-after-bag">
+                    <div className="miga-bag-symbol" />
+                    <strong>
+                      miga<span>.</span>
+                    </strong>
+                    <small>Panadería &amp; Café</small>
+                  </div>
+
+                  <div className="miga-after-menu">
+                    <div className="miga-menu-top">
+                      <div className="miga-menu-brand">
+                        miga<span>.</span>
+                      </div>
+                      <div className="miga-menu-dot" />
+                    </div>
+                    <h3>Menú del día</h3>
+                    <p>
+                      Croissant .................... $
+                      <br />
+                      Latte .......................... $
+                      <br />
+                      Pan de chocolate ......... $
+                    </p>
+                  </div>
+
+                  <div className="miga-after-sticker">
+                    <div>
+                      <div className="miga-sticker-word">
+                        miga<span>.</span>
+                      </div>
+                      <small>horneado hoy</small>
+                    </div>
+                  </div>
+
+                  <div className="miga-micro-note miga-mn3">mismo tono</div>
+                  <div className="miga-micro-note miga-mn4">misma intención</div>
+
+                  <div className="miga-after-foot">
+                    <strong>Ahora todo se reconoce como MIGA.</strong>
+                    <span>Logo · post · story · empaque · menú</span>
+                  </div>
+                </div>
+              </article>
             </div>
 
-            <div className="lab-remate reveal">
-              Todo empieza a verse parte
-              del{' '}
-              <span>
-                mismo negocio.
-              </span>
+            <div className="miga-remate reveal">
+              <h2>
+                No se trata de hacer todo igual.
+                <br />
+                <span>Se trata de que todo se sienta tuyo.</span>
+              </h2>
+
+              <p>
+                Una story puede verse distinta a un empaque. Lo importante es que
+                ambos sigan pareciendo del mismo negocio.
+              </p>
             </div>
           </div>
         </section>

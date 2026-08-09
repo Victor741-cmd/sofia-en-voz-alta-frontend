@@ -534,3 +534,942 @@ footer { padding:30px 0 34px;border-top:1px solid var(--line); }
   .nav-links.nav-links-open a { padding: .72rem .8rem; }
   .nav-links.nav-links-open .btn { text-align: center; }
 }
+
+/* =========================================================
+   MIGA / CASO VISUAL - REEMPLAZO DE LA SECCIÓN "PROBLEMA"
+   ========================================================= */
+:root {
+  --m-espresso:#3e2a24;
+  --m-terracotta:#c96f4f;
+  --m-butter:#f2d98c;
+  --m-ivory:#fff8ed;
+  --m-sage:#7d8d78;
+}
+
+.miga-section {
+  padding:96px 0 112px;
+  position:relative;
+  overflow:hidden;
+}
+
+.miga-main-title {
+  margin:16px 0 18px;
+  max-width:1030px;
+  color:var(--plum);
+  font-size:clamp(3rem,5.8vw,6.15rem);
+  line-height:.93;
+  letter-spacing:-.058em;
+}
+
+.miga-intro {
+  max-width:820px;
+  color:#554c51;
+  font-size:clamp(1.05rem,1.55vw,1.24rem);
+}
+
+.miga-intro strong { color:var(--plum); }
+
+.miga-case-name {
+  margin-top:46px;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.miga-case-brand {
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+}
+
+.miga-case-brand strong {
+  color:var(--plum);
+  font-size:clamp(2rem,3.5vw,3.8rem);
+  letter-spacing:-.045em;
+}
+
+.miga-case-brand span {
+  color:var(--muted);
+  font-size:.95rem;
+  font-weight:760;
+}
+
+.miga-case-hint {
+  color:var(--muted);
+  font-size:.86rem;
+  max-width:360px;
+  text-align:right;
+}
+
+.miga-compare {
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 114px minmax(0,1fr);
+  align-items:stretch;
+  position:relative;
+}
+
+.miga-side {
+  position:relative;
+  min-height:760px;
+  overflow:hidden;
+  border:1px solid var(--line-soft);
+  background:#fff;
+}
+
+.miga-before {
+  border-radius:38px 0 0 38px;
+  background:linear-gradient(160deg,#fff 0%,#fbf8f6 100%);
+}
+
+.miga-after {
+  border-radius:0 38px 38px 0;
+  background:
+    radial-gradient(circle at 95% 8%,rgba(201,111,79,.10),transparent 18rem),
+    linear-gradient(155deg,#fffdf9 0%,#fff 70%);
+}
+
+.miga-side-head {
+  position:absolute;
+  left:28px;
+  right:28px;
+  top:26px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:20px;
+  z-index:8;
+}
+
+.miga-side-label {
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.71rem;
+  font-weight:900;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+.miga-before-label { background:var(--plum); color:#fff; }
+.miga-after-label { background:var(--m-espresso); color:#fff; }
+
+.miga-side-head-copy {
+  text-align:right;
+  max-width:270px;
+}
+
+.miga-side-head-copy strong {
+  display:block;
+  color:var(--plum);
+  font-size:.96rem;
+  line-height:1.2;
+}
+
+.miga-side-head-copy span {
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:.77rem;
+}
+
+.miga-canvas { position:absolute; inset:92px 24px 28px; }
+
+/* BEFORE */
+.miga-before .miga-canvas::before {
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  border:1.4px solid rgba(76,18,63,.06);
+  left:-140px;
+  top:-90px;
+}
+
+.miga-before-logo {
+  position:absolute;
+  left:6%;
+  top:5%;
+  width:210px;
+  height:132px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  transform:rotate(-4deg);
+  display:grid;
+  place-items:center;
+}
+
+.miga-before-script {
+  font-family:"Brush Script MT","Segoe Script",cursive;
+  font-size:2.35rem;
+  color:#6c4428;
+  line-height:.85;
+}
+
+.miga-before-sub {
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  font-size:.49rem;
+  color:#8b755f;
+  text-align:center;
+  margin-top:5px;
+}
+
+.miga-wheat {
+  position:absolute;
+  right:22px;
+  top:24px;
+  font-size:1.45rem;
+  transform:rotate(20deg);
+}
+
+.miga-before-post {
+  position:absolute;
+  right:4%;
+  top:4%;
+  width:210px;
+  height:210px;
+  border-radius:28px;
+  background:linear-gradient(145deg,#ffc928,#ff6a28);
+  box-shadow:0 18px 42px rgba(179,86,16,.16);
+  transform:rotate(4deg);
+  padding:18px;
+  overflow:hidden;
+}
+
+.miga-before-post::before {
+  content:"PROMO";
+  position:absolute;
+  right:-20px;
+  top:18px;
+  background:#d71920;
+  color:#fff;
+  padding:7px 30px;
+  transform:rotate(28deg);
+  font-size:.7rem;
+  font-weight:950;
+}
+
+.miga-oldmark {
+  font-size:.62rem;
+  font-weight:950;
+  background:#fff;
+  color:#a34b19;
+  padding:5px 7px;
+  border-radius:5px;
+  width:max-content;
+}
+
+.miga-promo-hero {
+  margin-top:45px;
+  color:#a20f18;
+  font-size:2rem;
+  line-height:.88;
+  font-weight:950;
+  text-transform:uppercase;
+  text-shadow:0 2px 0 rgba(255,255,255,.35);
+}
+
+.miga-promo-sub {
+  margin-top:8px;
+  color:#63230f;
+  font-size:.74rem;
+  font-weight:800;
+}
+
+.miga-before-story {
+  position:absolute;
+  left:3%;
+  bottom:8%;
+  width:145px;
+  height:260px;
+  border-radius:26px;
+  background:linear-gradient(180deg,#f4a6c3,#d78aaf);
+  transform:rotate(3deg);
+  box-shadow:0 18px 40px rgba(135,73,104,.13);
+  padding:16px;
+  color:#643555;
+  overflow:hidden;
+}
+
+.miga-doodle {
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  background:#fff1c7;
+  margin-bottom:60px;
+  display:grid;
+  place-items:center;
+  font-size:1.7rem;
+}
+
+.miga-before-story strong {
+  font-family:"Comic Sans MS","Segoe Print",cursive;
+  font-size:1.28rem;
+  line-height:1.03;
+  display:block;
+}
+
+.miga-before-story span {
+  display:block;
+  font-size:.68rem;
+  margin-top:10px;
+  color:#774c67;
+}
+
+.miga-before-bag {
+  position:absolute;
+  right:6%;
+  bottom:5%;
+  width:156px;
+  height:230px;
+  background:#bc8756;
+  border-radius:14px 14px 8px 8px;
+  transform:rotate(-4deg);
+  box-shadow:0 20px 44px rgba(91,55,30,.12);
+}
+
+.miga-before-bag::before {
+  content:"";
+  position:absolute;
+  left:16px;
+  right:16px;
+  top:20px;
+  height:2px;
+  background:#8d643f;
+}
+
+.miga-cup {
+  position:absolute;
+  top:60px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:2rem;
+}
+
+.miga-bag-title {
+  position:absolute;
+  top:106px;
+  width:100%;
+  text-align:center;
+  color:#fff;
+  font-weight:950;
+  font-size:1rem;
+  letter-spacing:.08em;
+}
+
+.miga-bag-sub {
+  position:absolute;
+  top:137px;
+  width:100%;
+  text-align:center;
+  color:#f8ecdf;
+  font-size:.58rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+.miga-before-menu {
+  position:absolute;
+  left:24%;
+  bottom:3%;
+  width:250px;
+  height:150px;
+  border-radius:20px;
+  background:#1f1f1f;
+  color:#fff;
+  transform:rotate(-2deg);
+  box-shadow:0 16px 36px rgba(0,0,0,.12);
+  padding:20px;
+}
+
+.miga-menu-brand-old {
+  font-family:Georgia,serif;
+  color:#f0d6b5;
+  font-size:1.15rem;
+}
+
+.miga-before-menu h3 {
+  font-family:Georgia,serif;
+  margin:16px 0 8px;
+  color:#fff;
+  font-size:1.25rem;
+}
+
+.miga-before-menu p {
+  margin:0;
+  color:#c9c9c9;
+  font-size:.63rem;
+  line-height:1.6;
+}
+
+.miga-before-chat {
+  position:absolute;
+  left:38%;
+  top:35%;
+  width:260px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  transform:rotate(-1.4deg);
+  padding:13px;
+  z-index:5;
+}
+
+.miga-chat-top {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:9px;
+  margin-bottom:9px;
+}
+
+.miga-avatar {
+  width:27px;
+  height:27px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#6a442a,#b18461);
+}
+
+.miga-chat-top strong { font-size:.76rem; color:var(--plum); }
+
+.miga-bubble {
+  width:max-content;
+  max-width:90%;
+  padding:7px 9px;
+  border-radius:11px 11px 11px 4px;
+  background:#f2f1f1;
+  color:#50484d;
+  font-size:.68rem;
+  margin:5px 0;
+}
+
+.miga-bubble-me {
+  margin-left:auto;
+  background:#e7f7e9;
+  border-radius:11px 11px 4px 11px;
+}
+
+.miga-before-foot,
+.miga-after-foot {
+  position:absolute;
+  left:28px;
+  right:28px;
+  bottom:25px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+}
+
+.miga-before-foot strong { color:var(--plum); font-size:1.02rem; }
+.miga-before-foot span { color:var(--muted); font-size:.75rem; }
+
+/* TRANSITION */
+.miga-transition {
+  position:relative;
+  display:grid;
+  place-items:center;
+  overflow:visible;
+}
+
+.miga-transition::before {
+  content:"";
+  position:absolute;
+  top:70px;
+  bottom:70px;
+  width:2px;
+  background:linear-gradient(180deg,transparent,rgba(233,0,98,.28),transparent);
+}
+
+.miga-converge {
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.miga-converge svg { width:100%; height:100%; overflow:visible; }
+
+.miga-converge path {
+  fill:none;
+  stroke:rgba(233,0,98,.42);
+  stroke-width:2.1;
+  stroke-dasharray:8 10;
+  stroke-linecap:round;
+}
+
+.miga-order-chip {
+  width:94px;
+  height:94px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--plum);
+  color:#fff;
+  box-shadow:0 18px 44px rgba(76,18,63,.22);
+  z-index:5;
+  text-align:center;
+}
+
+.miga-order-chip strong {
+  display:block;
+  font-size:.64rem;
+  line-height:1.05;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+
+.miga-order-chip span { font-size:1.7rem; line-height:.9; margin-top:2px; }
+
+.miga-order-note {
+  position:absolute;
+  top:64%;
+  color:var(--rasp);
+  font-size:.68rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+}
+
+/* AFTER */
+.miga-after .miga-canvas::before {
+  content:"";
+  position:absolute;
+  right:-90px;
+  top:-60px;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  background:rgba(201,111,79,.07);
+}
+
+.miga-after-logo {
+  position:absolute;
+  left:6%;
+  top:5%;
+  width:235px;
+  height:150px;
+  border-radius:24px;
+  background:var(--m-ivory);
+  border:1px solid rgba(62,42,36,.1);
+  box-shadow:var(--shadow);
+  padding:22px;
+}
+
+.miga-mark { display:flex; align-items:center; gap:12px; }
+
+.miga-symbol {
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:var(--m-espresso);
+  position:relative;
+  overflow:hidden;
+}
+
+.miga-symbol::before {
+  content:"";
+  position:absolute;
+  width:27px;
+  height:10px;
+  border-radius:999px;
+  background:var(--m-butter);
+  left:10px;
+  top:18px;
+  transform:rotate(-12deg);
+}
+
+.miga-word {
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:2.3rem;
+  line-height:.8;
+  color:var(--m-espresso);
+  letter-spacing:-.05em;
+}
+
+.miga-word span { color:var(--m-terracotta); }
+
+.miga-after-sub {
+  margin-top:15px;
+  color:#77665e;
+  font-size:.62rem;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+}
+
+.miga-after-palette {
+  position:absolute;
+  left:6%;
+  top:190px;
+  display:flex;
+  gap:8px;
+}
+
+.miga-after-palette span {
+  width:28px;
+  height:28px;
+  border-radius:9px;
+  border:1px solid rgba(0,0,0,.035);
+}
+
+.miga-ap1 { background:var(--m-espresso); }
+.miga-ap2 { background:var(--m-terracotta); }
+.miga-ap3 { background:var(--m-butter); }
+.miga-ap4 { background:var(--m-ivory); }
+
+.miga-after-post {
+  position:absolute;
+  right:5%;
+  top:4%;
+  width:210px;
+  height:210px;
+  border-radius:28px;
+  background:var(--m-ivory);
+  border:1px solid rgba(62,42,36,.09);
+  box-shadow:var(--shadow);
+  padding:18px;
+  overflow:hidden;
+}
+
+.miga-after-post::before {
+  content:"";
+  position:absolute;
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  background:var(--m-terracotta);
+  right:-56px;
+  top:-62px;
+  opacity:.96;
+}
+
+.miga-mini-logo {
+  font-family:Georgia,serif;
+  color:var(--m-espresso);
+  font-size:.92rem;
+  font-weight:800;
+}
+
+.miga-mini-logo span { color:var(--m-terracotta); }
+
+.miga-offer {
+  margin-top:48px;
+  color:var(--m-espresso);
+  font-size:1.85rem;
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-.04em;
+}
+
+.miga-offer-sub {
+  margin-top:10px;
+  color:#75655d;
+  font-size:.68rem;
+  max-width:125px;
+}
+
+.miga-croissant {
+  position:absolute;
+  right:14px;
+  bottom:15px;
+  font-size:2.45rem;
+  transform:rotate(-9deg);
+}
+
+.miga-after-story {
+  position:absolute;
+  left:5%;
+  bottom:6%;
+  width:145px;
+  height:260px;
+  border-radius:26px;
+  background:var(--m-espresso);
+  box-shadow:0 18px 40px rgba(62,42,36,.16);
+  padding:16px;
+  color:#fff;
+}
+
+.miga-story-line {
+  width:34px;
+  height:4px;
+  border-radius:99px;
+  background:var(--m-terracotta);
+}
+
+.miga-bean { font-size:2rem; margin-top:22px; }
+
+.miga-after-story strong {
+  display:block;
+  margin-top:60px;
+  font-family:Georgia,serif;
+  font-size:1.25rem;
+  line-height:1.03;
+}
+
+.miga-after-story span {
+  display:block;
+  font-size:.64rem;
+  color:#e8d8d0;
+  margin-top:9px;
+}
+
+.miga-after-bag {
+  position:absolute;
+  right:5%;
+  bottom:4%;
+  width:162px;
+  height:238px;
+  border-radius:16px 16px 9px 9px;
+  background:var(--m-ivory);
+  border:1px solid rgba(62,42,36,.1);
+  box-shadow:0 18px 38px rgba(62,42,36,.08);
+}
+
+.miga-after-bag::before {
+  content:"";
+  position:absolute;
+  left:18px;
+  right:18px;
+  top:20px;
+  height:2px;
+  background:#d8c8bc;
+}
+
+.miga-bag-symbol {
+  position:absolute;
+  top:55px;
+  left:50%;
+  transform:translateX(-50%);
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:var(--m-espresso);
+}
+
+.miga-bag-symbol::after {
+  content:"";
+  position:absolute;
+  width:26px;
+  height:9px;
+  border-radius:999px;
+  background:var(--m-butter);
+  left:11px;
+  top:20px;
+  transform:rotate(-12deg);
+}
+
+.miga-after-bag strong {
+  position:absolute;
+  top:118px;
+  width:100%;
+  text-align:center;
+  font-family:Georgia,serif;
+  color:var(--m-espresso);
+  font-size:1.05rem;
+}
+
+.miga-after-bag strong span { color:var(--m-terracotta); }
+
+.miga-after-bag small {
+  position:absolute;
+  top:148px;
+  width:100%;
+  text-align:center;
+  color:#7c6b63;
+  font-size:.55rem;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+}
+
+.miga-after-menu {
+  position:absolute;
+  left:26%;
+  bottom:4%;
+  width:255px;
+  height:154px;
+  border-radius:20px;
+  background:#fff;
+  border:1px solid rgba(62,42,36,.1);
+  box-shadow:var(--shadow);
+  padding:19px;
+}
+
+.miga-menu-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.miga-menu-brand {
+  font-family:Georgia,serif;
+  color:var(--m-espresso);
+  font-size:1.25rem;
+}
+
+.miga-menu-brand span { color:var(--m-terracotta); }
+
+.miga-menu-dot {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--m-terracotta);
+}
+
+.miga-after-menu h3 {
+  margin:20px 0 8px;
+  color:var(--m-espresso);
+  font-family:Georgia,serif;
+  font-size:1.18rem;
+}
+
+.miga-after-menu p {
+  margin:0;
+  color:#74645c;
+  font-size:.62rem;
+  line-height:1.65;
+}
+
+.miga-after-sticker {
+  position:absolute;
+  left:43%;
+  top:38%;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  background:var(--m-espresso);
+  box-shadow:0 16px 38px rgba(62,42,36,.15);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  text-align:center;
+  transform:rotate(-3deg);
+}
+
+.miga-sticker-word {
+  font-family:Georgia,serif;
+  font-size:1.5rem;
+  line-height:.85;
+}
+
+.miga-sticker-word span { color:var(--m-terracotta); }
+
+.miga-after-sticker small {
+  display:block;
+  margin-top:7px;
+  font-size:.48rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#eadbd4;
+}
+
+.miga-after-foot strong { color:var(--m-espresso); font-size:1.02rem; }
+.miga-after-foot span { color:#7a6a62; font-size:.75rem; }
+
+.miga-micro-note {
+  position:absolute;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:.62rem;
+  font-weight:850;
+  color:var(--plum);
+  box-shadow:0 10px 26px rgba(76,18,63,.06);
+}
+
+.miga-mn1 { left:4%; top:44%; transform:rotate(-6deg); }
+.miga-mn2 { right:2%; top:43%; transform:rotate(5deg); }
+.miga-after .miga-micro-note { color:var(--m-espresso); border-color:rgba(62,42,36,.1); }
+.miga-mn3 { left:4%; top:43%; transform:rotate(-3deg); }
+.miga-mn4 { right:3%; top:42%; transform:rotate(3deg); }
+
+.miga-remate {
+  margin-top:52px;
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:46px;
+  align-items:end;
+  border-top:1px solid var(--line);
+  padding-top:30px;
+}
+
+.miga-remate h2 {
+  margin:0;
+  color:var(--plum);
+  font-size:clamp(2.6rem,5.2vw,5.4rem);
+  line-height:.94;
+  letter-spacing:-.052em;
+  max-width:900px;
+}
+
+.miga-remate h2 span { color:var(--rasp); }
+
+.miga-remate p {
+  margin:0 0 7px;
+  color:var(--muted);
+  font-size:.94rem;
+  line-height:1.55;
+}
+
+@media(max-width:1100px) {
+  .miga-compare { grid-template-columns:1fr; }
+  .miga-transition { height:110px; }
+  .miga-transition::before { display:none; }
+  .miga-converge { display:none; }
+  .miga-order-chip { transform:rotate(90deg); }
+  .miga-order-note { display:none; }
+  .miga-side { border-radius:32px!important; min-height:760px; }
+}
+
+@media(max-width:740px) {
+  .miga-section { padding:72px 0 88px; }
+  .miga-main-title { font-size:clamp(2.8rem,13vw,4.4rem); }
+  .miga-case-name { align-items:flex-start; flex-direction:column; }
+  .miga-case-hint { text-align:left; }
+  .miga-side { min-height:670px; }
+  .miga-canvas { inset:88px 14px 24px; }
+  .miga-side-head { left:18px; right:18px; }
+  .miga-side-head-copy { max-width:190px; }
+  .miga-before-logo,.miga-after-logo { width:170px; }
+  .miga-before-post,.miga-after-post { width:165px; height:165px; }
+  .miga-before-story,.miga-after-story { width:110px; height:215px; }
+  .miga-before-chat { width:210px; left:28%; top:39%; }
+  .miga-before-menu,.miga-after-menu { width:205px; height:130px; left:20%; }
+  .miga-before-bag,.miga-after-bag { width:125px; height:190px; }
+  .miga-after-sticker { width:120px; height:120px; left:38%; top:39%; }
+  .miga-remate { grid-template-columns:1fr; }
+}
+
+@media(max-width:520px) {
+  .miga-side { min-height:760px; }
+  .miga-side-head-copy { max-width:155px; }
+  .miga-side-head-copy strong { font-size:.82rem; }
+  .miga-side-head-copy span { font-size:.68rem; }
+  .miga-before-logo,.miga-after-logo { width:145px; height:112px; padding:15px; }
+  .miga-before-script { font-size:1.8rem; }
+  .miga-word { font-size:1.8rem; }
+  .miga-symbol { width:36px; height:36px; }
+  .miga-symbol::before { width:21px; height:8px; left:8px; top:14px; }
+  .miga-after-sub { font-size:.48rem; }
+  .miga-before-post,.miga-after-post { width:145px; height:145px; }
+  .miga-promo-hero { font-size:1.45rem; margin-top:34px; }
+  .miga-offer { font-size:1.4rem; margin-top:34px; }
+  .miga-before-chat { width:190px; left:20%; top:39%; }
+  .miga-before-story,.miga-after-story { width:100px; height:205px; bottom:8%; }
+  .miga-before-bag,.miga-after-bag { width:105px; height:175px; right:2%; }
+  .miga-before-menu,.miga-after-menu { width:190px; height:128px; left:20%; bottom:2%; }
+  .miga-after-sticker { width:105px; height:105px; left:40%; top:42%; }
+  .miga-micro-note { font-size:.53rem; padding:6px 8px; }
+  .miga-before-foot,.miga-after-foot { left:16px; right:16px; bottom:12px; }
+  .miga-before-foot span,.miga-after-foot span { display:none; }
+}
