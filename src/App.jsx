@@ -31,17 +31,10 @@ function Header() {
           }`}
         >
           <a
-            href="#problema"
+            href="#servicios"
             onClick={closeMenu}
           >
-            Qué hacemos
-          </a>
-
-          <a
-            href="#como"
-            onClick={closeMenu}
-          >
-            Cómo trabajamos
+            Servicios
           </a>
 
           <a
@@ -52,11 +45,25 @@ function Header() {
           </a>
 
           <a
+            href="#como"
+            onClick={closeMenu}
+          >
+            Cómo trabajamos
+          </a>
+
+          <a
+            href="#contacto"
+            onClick={closeMenu}
+          >
+            Contacto
+          </a>
+
+          <a
             href="#contacto"
             className="btn btn-primary"
             onClick={closeMenu}
           >
-            Hablemos de tu marca
+            Muéstrame tu marca
           </a>
         </nav>
 
@@ -73,6 +80,245 @@ function Header() {
         </button>
       </div>
     </header>
+  );
+}
+
+function ServicesSection() {
+  return (
+    <>
+      <style>{`
+        .services-ui {
+          padding: 120px 0 110px;
+          background: #fffefc;
+          scroll-margin-top: 90px;
+        }
+
+        .services-ui-head {
+          display: grid;
+          grid-template-columns: minmax(0, 1.1fr) minmax(300px, .75fr);
+          gap: 70px;
+          align-items: end;
+          padding-bottom: 72px;
+          border-bottom: 1px solid rgba(76, 18, 63, .13);
+        }
+
+        .services-ui-title {
+          margin: 22px 0 0;
+          max-width: 830px;
+          color: var(--plum);
+          font-size: clamp(3.4rem, 6.5vw, 6.8rem);
+          line-height: .9;
+          letter-spacing: -.065em;
+        }
+
+        .services-ui-intro {
+          margin: 0 0 8px;
+          max-width: 520px;
+          color: #51494e;
+          font-size: clamp(1.05rem, 1.55vw, 1.28rem);
+          line-height: 1.55;
+        }
+
+        .services-ui-list {
+          display: grid;
+        }
+
+        .services-ui-row {
+          display: grid;
+          grid-template-columns: 105px minmax(270px, .9fr) minmax(320px, 1fr) auto;
+          gap: 38px;
+          align-items: center;
+          min-height: 170px;
+          padding: 28px 8px;
+          border-bottom: 1px solid rgba(76, 18, 63, .13);
+        }
+
+        .services-ui-number {
+          color: rgba(76, 18, 63, .09);
+          font-size: clamp(3.4rem, 5vw, 5.4rem);
+          line-height: 1;
+          font-weight: 950;
+          letter-spacing: -.07em;
+        }
+
+        .services-ui-row:nth-child(2) .services-ui-number {
+          color: rgba(233, 0, 98, .15);
+        }
+
+        .services-ui-name {
+          margin: 0;
+          color: var(--plum);
+          font-size: clamp(2rem, 3.2vw, 3.35rem);
+          line-height: .98;
+          letter-spacing: -.045em;
+        }
+
+        .services-ui-description {
+          margin: 0;
+          max-width: 470px;
+          color: #51494e;
+          font-size: 1rem;
+          line-height: 1.55;
+        }
+
+        .services-ui-cta {
+          justify-self: end;
+          white-space: nowrap;
+          color: var(--plum);
+          font-size: 1rem;
+          font-weight: 900;
+          transition: transform .2s ease, color .2s ease;
+        }
+
+        .services-ui-cta:hover {
+          color: var(--rasp);
+          transform: translateX(5px);
+        }
+
+        @media (max-width: 980px) {
+          .services-ui {
+            padding: 90px 0;
+          }
+
+          .services-ui-head {
+            grid-template-columns: 1fr;
+            gap: 25px;
+            padding-bottom: 45px;
+          }
+
+          .services-ui-row {
+            grid-template-columns: 72px 1fr;
+            gap: 18px 24px;
+            padding: 32px 0;
+          }
+
+          .services-ui-description {
+            grid-column: 2;
+          }
+
+          .services-ui-cta {
+            grid-column: 2;
+            justify-self: start;
+          }
+        }
+
+        @media (max-width: 680px) {
+          .services-ui {
+            padding: 76px 0;
+          }
+
+          .services-ui-title {
+            font-size: clamp(3rem, 14vw, 4.6rem);
+          }
+
+          .services-ui-row {
+            grid-template-columns: 58px 1fr;
+            min-height: auto;
+          }
+
+          .services-ui-number {
+            font-size: 3.4rem;
+            align-self: start;
+          }
+
+          .services-ui-name {
+            font-size: 2.25rem;
+          }
+
+          .services-ui-description,
+          .services-ui-cta {
+            grid-column: 1 / -1;
+            margin-left: 0;
+          }
+        }
+      `}</style>
+
+      <section
+        id="servicios"
+        className="services-ui"
+      >
+        <div className="container">
+          <div className="services-ui-head reveal">
+            <div>
+              <span className="eyebrow">
+                ¿Qué necesitas?
+              </span>
+
+              <h2 className="services-ui-title">
+                No todos llegan con el mismo problema.
+              </h2>
+            </div>
+
+            <p className="services-ui-intro">
+              No tienes que saber cómo se llama el servicio.
+              Elige la situación que más se parece a la tuya.
+            </p>
+          </div>
+
+          <div className="services-ui-list reveal">
+            <article className="services-ui-row">
+              <div className="services-ui-number">01</div>
+
+              <h3 className="services-ui-name">
+                Estoy empezando.
+              </h3>
+
+              <p className="services-ui-description">
+                Todavía no tengo claro cómo debería verse mi negocio.
+                Necesito logo, colores y una base que pueda empezar a usar.
+              </p>
+
+              <a
+                className="services-ui-cta"
+                href="#contacto"
+              >
+                Diseño de logo →
+              </a>
+            </article>
+
+            <article className="services-ui-row">
+              <div className="services-ui-number">02</div>
+
+              <h3 className="services-ui-name">
+                Ya tengo logo, pero quiero cambiarlo.
+              </h3>
+
+              <p className="services-ui-description">
+                Mi negocio avanzó. Su imagen se quedó atrás.
+                Quiero revisar qué vale la pena conservar y qué necesita cambiar.
+              </p>
+
+              <a
+                className="services-ui-cta"
+                href="#contacto"
+              >
+                Rediseño de logo →
+              </a>
+            </article>
+
+            <article className="services-ui-row">
+              <div className="services-ui-number">03</div>
+
+              <h3 className="services-ui-name">
+                Tengo muchas cosas, pero nada se conecta.
+              </h3>
+
+              <p className="services-ui-description">
+                Logo, publicaciones, colores y piezas parecen de negocios distintos.
+                Necesito poner todo de acuerdo.
+              </p>
+
+              <a
+                className="services-ui-cta"
+                href="#contacto"
+              >
+                Identidad de marca →
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -602,6 +848,8 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        <ServicesSection />
 
         <section id="problema" className="section miga-section">
           <div className="container">
@@ -1363,8 +1611,8 @@ export default function App() {
           />
 
           <div className="footer-links">
-            <a href="#problema">
-              Qué hacemos
+            <a href="#servicios">
+              Servicios
             </a>
 
             <a href="#como">
