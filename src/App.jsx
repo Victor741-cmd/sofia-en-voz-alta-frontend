@@ -322,15 +322,214 @@ function ServicesSection() {
   );
 }
 
+function MultiSelectDropdown({
+  label,
+  options,
+  selectedValues,
+  onToggle,
+  placeholder,
+}) {
+  const [open, setOpen] = useState(false);
+
+  const selectedText =
+    selectedValues.length === 0
+      ? placeholder
+      : selectedValues.length === 1
+        ? selectedValues[0]
+        : `${selectedValues.length} opciones seleccionadas`;
+
+  return (
+    <div className="multi-select">
+      <button
+        type="button"
+        className={`multi-select-trigger ${
+          open ? 'multi-select-trigger-open' : ''
+        }`}
+        onClick={() => setOpen((current) => !current)}
+        aria-expanded={open}
+      >
+        <span
+          className={
+            selectedValues.length === 0
+              ? 'multi-select-placeholder'
+              : ''
+          }
+        >
+          {selectedText}
+        </span>
+
+        <span
+          className={`multi-select-arrow ${
+            open ? 'multi-select-arrow-open' : ''
+          }`}
+        >
+          ▾
+        </span>
+      </button>
+
+      {open && (
+        <div className="multi-select-menu">
+          {options.map((option, index) => {
+            const id = `${label}-${index}`;
+
+            const checked =
+              selectedValues.includes(option.value);
+
+            return (
+              <label
+                key={option.value}
+                className={`multi-select-option ${
+                  checked
+                    ? 'multi-select-option-selected'
+                    : ''
+                }`}
+                htmlFor={id}
+              >
+                <input
+                  id={id}
+                  type="checkbox"
+                  checked={checked}
+                  onChange={() =>
+                    onToggle(option.value)
+                  }
+                />
+
+                <span className="multi-select-check">
+                  {checked ? '✓' : ''}
+                </span>
+
+                <span className="multi-select-option-copy">
+                  <strong>
+                    {option.title}
+                  </strong>
+
+                  <span>
+                    {option.description}
+                  </span>
+                </span>
+              </label>
+            );
+          })}
+        </div>
+      )}
+
+      {selectedValues.length > 0 && (
+        <div className="multi-select-selected">
+          {selectedValues.map((value) => (
+            <span
+              key={value}
+              className="multi-select-chip"
+            >
+              {value}
+
+              <button
+                type="button"
+                onClick={() =>
+                  onToggle(value)
+                }
+                aria-label={`Quitar ${value}`}
+              >
+                ×
+              </button>
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ContactForm() {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    negocio: '',
-    situacion: '',
-    canal: 'correo',
-    whatsapp: '',
-    correo: '',
-  });
+  const HELP_OPTIONS = [
+    {
+      value: 'Crear mi logo desde cero',
+      title: 'Crear mi logo desde cero',
+      description:
+        'Estoy empezando y necesito una base clara.',
+    },
+    {
+      value:
+        'Mejorar o rediseñar mi logo actual',
+      title:
+        'Mejorar o rediseñar mi logo actual',
+      description:
+        'Ya tengo algo, pero siento que puede funcionar mejor.',
+    },
+    {
+      value:
+        'Organizar toda la identidad de mi marca',
+      title:
+        'Organizar toda la identidad de mi marca',
+      description:
+        'Quiero que logo, colores y piezas empiecen a sentirse conectados.',
+    },
+    {
+      value: 'No estoy seguro todavía',
+      title: 'No estoy seguro todavía',
+      description:
+        'Está bien. Lo revisamos contigo.',
+    },
+  ];
+
+  const PROBLEM_OPTIONS = [
+    {
+      value: 'Estoy empezando',
+      title: 'Estoy empezando',
+      description:
+        'Todavía no tengo una marca clara.',
+    },
+    {
+      value:
+        'Mi logo ya no me representa',
+      title:
+        'Mi logo ya no me representa',
+      description:
+        'Existe, pero no se siente como mi negocio hoy.',
+    },
+    {
+      value:
+        'Cada pieza parece de un negocio distinto',
+      title:
+        'Cada pieza parece de un negocio distinto',
+      description:
+        'Tengo logo, colores y publicaciones, pero nada se conecta.',
+    },
+    {
+      value:
+        'Mi negocio creció y la imagen se quedó atrás',
+      title:
+        'Mi negocio creció y la imagen se quedó atrás',
+      description:
+        'Siento que visualmente sigo en la etapa del comienzo.',
+    },
+    {
+      value:
+        'Mi negocio se ve menos profesional de lo que es',
+      title:
+        'Mi negocio se ve menos profesional de lo que es',
+      description:
+        'Lo que mostramos no está a la altura del trabajo que hacemos.',
+    },
+    {
+      value: 'Es otra cosa',
+      title: 'Es otra cosa',
+      description:
+        'Cuéntanos brevemente qué pasa.',
+    },
+  ];
+
+  const [formData, setFormData] =
+    useState({
+      nombre: '',
+      negocio: '',
+      ayudas: [],
+      problemas: [],
+      otroProblema: '',
+      enlaceMarca: '',
+      canal: 'correo',
+      whatsapp: '',
+      correo: '',
+    });
 
   const [submitted, setSubmitted] =
     useState(false);
@@ -342,7 +541,8 @@ function ContactForm() {
     useState('');
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } =
+      event.target;
 
     setSubmitted(false);
     setErrorMessage('');
@@ -372,66 +572,186 @@ function ContactForm() {
     }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleCheckbox = (
+    group,
+    value
+  ) => {
+    setSubmitted(false);
+    setErrorMessage('');
+
+    setFormData((current) => {
+      const selected =
+        current[group];
+
+      const exists =
+        selected.includes(value);
+
+      const nextValues =
+        exists
+          ? selected.filter(
+              (item) =>
+                item !== value
+            )
+          : [...selected, value];
+
+      const nextState = {
+        ...current,
+        [group]: nextValues,
+      };
+
+      if (
+        group === 'problemas' &&
+        value === 'Es otra cosa' &&
+        exists
+      ) {
+        nextState.otroProblema =
+          '';
+      }
+
+      return nextState;
+    });
+  };
+
+  const validateForm = () => {
+    if (!formData.nombre.trim()) {
+      return 'Cuéntanos cómo te llamas.';
+    }
+
+    if (!formData.negocio.trim()) {
+      return 'Cuéntanos cómo se llama tu negocio y qué hace.';
+    }
+
+    if (
+      formData.ayudas.length === 0
+    ) {
+      return 'Selecciona al menos una opción sobre cómo podemos ayudarte.';
+    }
+
+    if (
+      formData.problemas.length ===
+      0
+    ) {
+      return 'Selecciona al menos una opción sobre lo que está pasando con tu marca.';
+    }
+
+    if (
+      formData.problemas.includes(
+        'Es otra cosa'
+      ) &&
+      !formData.otroProblema.trim()
+    ) {
+      return 'Cuéntanos brevemente qué está pasando.';
+    }
+
+    if (
+      formData.canal ===
+        'whatsapp' &&
+      !formData.whatsapp.trim()
+    ) {
+      return 'Escribe tu número de WhatsApp.';
+    }
+
+    if (
+      formData.canal === 'correo' &&
+      !formData.correo.trim()
+    ) {
+      return 'Escribe tu correo electrónico.';
+    }
+
+    return '';
+  };
+
+  const handleSubmit = async (
+    event
+  ) => {
     event.preventDefault();
+
+    const validationMessage =
+      validateForm();
+
+    if (validationMessage) {
+      setErrorMessage(
+        validationMessage
+      );
+      return;
+    }
 
     setSubmitting(true);
     setSubmitted(false);
     setErrorMessage('');
 
     const request = {
-      nombre: formData.nombre.trim(),
+      nombre:
+        formData.nombre.trim(),
 
-      negocio: formData.negocio.trim(),
+      negocio:
+        formData.negocio.trim(),
 
-      situacion: formData.situacion.trim(),
+      ayudas:
+        formData.ayudas,
 
-      canal: formData.canal,
+      problemas:
+        formData.problemas,
+
+      otroProblema:
+        formData.problemas.includes(
+          'Es otra cosa'
+        )
+          ? formData.otroProblema.trim()
+          : null,
+
+      enlaceMarca:
+        formData.enlaceMarca.trim() ||
+        null,
+
+      canal:
+        formData.canal,
 
       whatsapp:
-        formData.canal === 'whatsapp'
+        formData.canal ===
+        'whatsapp'
           ? formData.whatsapp.trim()
           : null,
 
       correo:
-        formData.canal === 'correo'
+        formData.canal ===
+        'correo'
           ? formData.correo.trim()
           : null,
     };
 
-    console.log(
-      'Request enviado al backend:',
-      request
-    );
-
     try {
       const API_URL =
-  import.meta.env.VITE_API_URL ||
-  'https://sofiaenvozalta.onrender.com';
+        import.meta.env
+          .VITE_API_URL ||
+        'https://sofiaenvozalta.onrender.com';
 
-const response = await fetch(
-  `${API_URL}/api/contact`,
-  {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(request),
-  }
-);
+      const response =
+        await fetch(
+          `${API_URL}/api/contact`,
+          {
+            method: 'POST',
+
+            headers: {
+              'Content-Type':
+                'application/json',
+            },
+
+            body:
+              JSON.stringify(
+                request
+              ),
+          }
+        );
 
       let result = null;
 
       try {
-        result = await response.json();
+        result =
+          await response.json();
       } catch {
         result = null;
       }
-
-      console.log(
-        'Respuesta del backend:',
-        result
-      );
 
       if (!response.ok) {
         let message =
@@ -440,11 +760,15 @@ const response = await fetch(
 
         if (result?.errors) {
           const validationMessages =
-            Object.values(result.errors)
+            Object.values(
+              result.errors
+            )
               .flat()
               .join(' ');
 
-          if (validationMessages) {
+          if (
+            validationMessages
+          ) {
             message =
               validationMessages;
           }
@@ -458,17 +782,15 @@ const response = await fetch(
       setFormData({
         nombre: '',
         negocio: '',
-        situacion: '',
+        ayudas: [],
+        problemas: [],
+        otroProblema: '',
+        enlaceMarca: '',
         canal: 'correo',
         whatsapp: '',
         correo: '',
       });
     } catch (error) {
-      console.error(
-        'Error enviando formulario:',
-        error
-      );
-
       setErrorMessage(
         error.message ||
           'No fue posible enviar tu solicitud. Inténtalo nuevamente.'
@@ -479,163 +801,558 @@ const response = await fetch(
   };
 
   return (
-    <form
-      className="form"
-      onSubmit={handleSubmit}
-    >
-      <div className="field">
-        <label htmlFor="nombre">
-          Nombre
-        </label>
+    <>
+      <style>{`
+        .diagnostic-form {
+          display: grid;
+          gap: 28px;
+        }
 
-        <input
-          id="nombre"
-          name="nombre"
-          type="text"
-          value={formData.nombre}
-          onChange={handleChange}
-          placeholder="¿Cómo te llamas?"
-          required
-        />
-      </div>
+        .diagnostic-step {
+          display: grid;
+          gap: 11px;
+        }
 
-      <div className="field">
-        <label htmlFor="negocio">
-          Negocio
-        </label>
+        .diagnostic-label {
+          display: flex;
+          align-items: baseline;
+          gap: 10px;
+          color: var(--plum);
+          font-weight: 900;
+          font-size: 1rem;
+        }
 
-        <input
-          id="negocio"
-          name="negocio"
-          type="text"
-          value={formData.negocio}
-          onChange={handleChange}
-          placeholder="¿Cómo se llama tu negocio?"
-        />
-      </div>
+        .diagnostic-num {
+          color: var(--rasp);
+          font-size: .8rem;
+          font-weight: 950;
+          letter-spacing: .06em;
+        }
 
-      <div className="field">
-        <label htmlFor="situacion">
-          ¿Qué está pasando?
-        </label>
+        .diagnostic-helper {
+          color: #766b72;
+          font-size: .8rem;
+          line-height: 1.4;
+        }
 
-        <textarea
-          id="situacion"
-          name="situacion"
-          value={formData.situacion}
-          onChange={handleChange}
-          placeholder="Cuéntanos. No tiene que sonar técnico."
-          required
-        />
-      </div>
+        .diagnostic-form input[type="text"],
+        .diagnostic-form input[type="email"],
+        .diagnostic-form input[type="tel"],
+        .diagnostic-form input[type="url"],
+        .diagnostic-form textarea {
+          width: 100%;
+          border: 1px solid rgba(75,17,63,.14);
+          border-radius: 15px;
+          background: #fff;
+          padding: 14px 15px;
+          color: #2a2328;
+          outline: none;
+          font: inherit;
+        }
 
-      <div className="field">
-        <label>
-          ¿Dónde podemos responderte?
-        </label>
-      </div>
+        .diagnostic-form textarea {
+          min-height: 92px;
+          resize: vertical;
+        }
 
-      <div className="channel">
-        <label>
-          <input
-            type="radio"
-            name="canal"
-            value="whatsapp"
-            checked={
-              formData.canal ===
-              'whatsapp'
-            }
-            onChange={handleChange}
-          />{' '}
-          WhatsApp
-        </label>
+        .multi-select {
+          position: relative;
+        }
 
-        <label>
-          <input
-            type="radio"
-            name="canal"
-            value="correo"
-            checked={
-              formData.canal ===
-              'correo'
-            }
-            onChange={handleChange}
-          />{' '}
-          Correo
-        </label>
-      </div>
+        .multi-select-trigger {
+          width: 100%;
+          min-height: 58px;
+          border: 1px solid rgba(75,17,63,.14);
+          border-radius: 15px;
+          background: #fff;
+          padding: 14px 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+          color: var(--plum);
+          font: inherit;
+          font-weight: 800;
+          text-align: left;
+          cursor: pointer;
+          transition: .18s;
+        }
 
-      {formData.canal ===
-        'whatsapp' && (
-        <div className="field conditional-field">
-          <label htmlFor="whatsapp">
-            Número de WhatsApp
-          </label>
+        .multi-select-trigger:hover,
+        .multi-select-trigger-open {
+          border-color: rgba(237,0,100,.38);
+          box-shadow: 0 0 0 4px rgba(237,0,100,.05);
+        }
 
-          <input
-            id="whatsapp"
-            name="whatsapp"
-            type="tel"
-            value={formData.whatsapp}
-            onChange={handleChange}
-            placeholder="Ej: +57 300 123 4567"
-            required
-          />
-        </div>
-      )}
+        .multi-select-placeholder {
+          color: #81777d;
+          font-weight: 500;
+        }
 
-      {formData.canal === 'correo' && (
-        <div className="field conditional-field">
-          <label htmlFor="correo">
-            Correo electrónico
-          </label>
+        .multi-select-arrow {
+          color: var(--plum);
+          font-size: 1.1rem;
+          transition: transform .2s ease;
+        }
 
-          <input
-            id="correo"
-            name="correo"
-            type="email"
-            value={formData.correo}
-            onChange={handleChange}
-            placeholder="Ej: hola@minegocio.com"
-            required
-          />
-        </div>
-      )}
+        .multi-select-arrow-open {
+          transform: rotate(180deg);
+        }
 
-      <button
-        className="btn btn-primary"
-        type="submit"
-        disabled={submitting}
+        .multi-select-menu {
+          position: absolute;
+          z-index: 30;
+          top: calc(100% + 8px);
+          left: 0;
+          right: 0;
+          max-height: 360px;
+          overflow-y: auto;
+          background: #fff;
+          border: 1px solid rgba(75,17,63,.13);
+          border-radius: 18px;
+          padding: 8px;
+          box-shadow: 0 22px 60px rgba(75,17,63,.14);
+        }
+
+        .multi-select-option {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          padding: 12px 13px;
+          border-radius: 12px;
+          cursor: pointer;
+          transition: .15s;
+        }
+
+        .multi-select-option:hover {
+          background: #fff7fa;
+        }
+
+        .multi-select-option-selected {
+          background: #fff2f6;
+        }
+
+        .multi-select-option input {
+          position: absolute;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .multi-select-check {
+          width: 20px;
+          height: 20px;
+          flex: 0 0 20px;
+          border: 1.5px solid rgba(75,17,63,.28);
+          border-radius: 6px;
+          display: grid;
+          place-items: center;
+          color: white;
+          font-size: .75rem;
+          font-weight: 950;
+        }
+
+        .multi-select-option-selected .multi-select-check {
+          background: var(--rasp);
+          border-color: var(--rasp);
+        }
+
+        .multi-select-option-copy strong {
+          display: block;
+          color: var(--plum);
+          font-size: .9rem;
+          line-height: 1.25;
+        }
+
+        .multi-select-option-copy span {
+          display: block;
+          margin-top: 3px;
+          color: #766b72;
+          font-size: .75rem;
+          line-height: 1.35;
+        }
+
+        .multi-select-selected {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 7px;
+          margin-top: 9px;
+        }
+
+        .multi-select-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          padding: 7px 9px;
+          border-radius: 999px;
+          background: #fff2f6;
+          color: var(--plum);
+          font-size: .72rem;
+          font-weight: 800;
+        }
+
+        .multi-select-chip button {
+          border: 0;
+          background: none;
+          color: var(--rasp);
+          font-size: 1rem;
+          line-height: 1;
+          cursor: pointer;
+          padding: 0;
+        }
+
+        .diagnostic-contact-options {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .diagnostic-contact {
+          position: relative;
+        }
+
+        .diagnostic-contact input {
+          position: absolute;
+          opacity: 0;
+        }
+
+        .diagnostic-contact label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          border: 1px solid rgba(75,17,63,.13);
+          border-radius: 999px;
+          padding: 10px 14px;
+          cursor: pointer;
+          font-weight: 820;
+          background: #fff;
+        }
+
+        .diagnostic-radio {
+          width: 17px;
+          height: 17px;
+          border: 1.5px solid rgba(75,17,63,.30);
+          border-radius: 50%;
+          position: relative;
+        }
+
+        .diagnostic-contact input:checked + label {
+          background: var(--plum);
+          color: #fff;
+        }
+
+        .diagnostic-contact input:checked + label .diagnostic-radio {
+          border-color: #fff;
+        }
+
+        .diagnostic-contact input:checked + label .diagnostic-radio::after {
+          content: "";
+          position: absolute;
+          inset: 4px;
+          background: #fff;
+          border-radius: 50%;
+        }
+
+        .diagnostic-submit {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 18px;
+        }
+
+        .diagnostic-note {
+          max-width: 300px;
+          margin: 0;
+          color: #766b72;
+          font-size: .74rem;
+        }
+
+        .diagnostic-trust {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+          padding-top: 18px;
+          border-top: 1px solid rgba(75,17,63,.07);
+          color: #6b6167;
+          font-size: .72rem;
+        }
+
+        .diagnostic-trust span::before {
+          content: "✓";
+          color: var(--rasp);
+          font-weight: 950;
+          margin-right: 6px;
+        }
+
+        @media (max-width: 680px) {
+          .diagnostic-submit {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          .diagnostic-note {
+            max-width: none;
+          }
+        }
+      `}</style>
+
+      <form
+        className="form diagnostic-form"
+        onSubmit={handleSubmit}
       >
-        {submitting
-          ? 'Enviando...'
-          : 'Quiero contarles →'}
-      </button>
+        <div className="diagnostic-step">
+          <label
+            className="diagnostic-label"
+            htmlFor="nombre"
+          >
+            <span className="diagnostic-num">
+              01
+            </span>
+            ¿Cómo te llamas?
+          </label>
 
-      {submitted && (
-        <div className="form-note success">
-          ¡Listo! Recibimos tu
-          solicitud. Te responderemos lo
-          antes posible.
+          <input
+            id="nombre"
+            name="nombre"
+            type="text"
+            value={formData.nombre}
+            onChange={handleChange}
+            placeholder="Ej: Laura Martínez"
+            required
+          />
         </div>
-      )}
 
-      {errorMessage && (
-        <div className="form-note error">
-          {errorMessage}
+        <div className="diagnostic-step">
+          <label
+            className="diagnostic-label"
+            htmlFor="negocio"
+          >
+            <span className="diagnostic-num">
+              02
+            </span>
+            ¿Cómo se llama tu negocio y qué hace?
+          </label>
+
+          <textarea
+            id="negocio"
+            name="negocio"
+            value={formData.negocio}
+            onChange={handleChange}
+            placeholder="Ej: Miga. Somos una panadería y café en Neiva."
+            required
+          />
         </div>
-      )}
 
-      {!submitted &&
-        !errorMessage && (
-          <div className="form-note">
-            Usaremos tus datos únicamente
-            para responder tu solicitud.
+        <div className="diagnostic-step">
+          <div className="diagnostic-label">
+            <span className="diagnostic-num">
+              03
+            </span>
+            ¿En qué te gustaría que te ayudemos?
+          </div>
+
+          <div className="diagnostic-helper">
+            Puedes seleccionar más de una opción.
+          </div>
+
+          <MultiSelectDropdown
+            label="help"
+            options={HELP_OPTIONS}
+            selectedValues={
+              formData.ayudas
+            }
+            onToggle={(value) =>
+              handleCheckbox(
+                'ayudas',
+                value
+              )
+            }
+            placeholder="Selecciona una o varias opciones"
+          />
+        </div>
+
+        <div className="diagnostic-step">
+          <div className="diagnostic-label">
+            <span className="diagnostic-num">
+              04
+            </span>
+            ¿Qué está pasando con tu marca hoy?
+          </div>
+
+          <div className="diagnostic-helper">
+            Puedes seleccionar más de una situación.
+          </div>
+
+          <MultiSelectDropdown
+            label="problem"
+            options={PROBLEM_OPTIONS}
+            selectedValues={
+              formData.problemas
+            }
+            onToggle={(value) =>
+              handleCheckbox(
+                'problemas',
+                value
+              )
+            }
+            placeholder="Selecciona una o varias situaciones"
+          />
+
+          {formData.problemas.includes(
+            'Es otra cosa'
+          ) && (
+            <textarea
+              name="otroProblema"
+              value={
+                formData.otroProblema
+              }
+              onChange={handleChange}
+              placeholder="Cuéntanos brevemente qué está pasando."
+              required
+            />
+          )}
+        </div>
+
+        <div className="diagnostic-step">
+          <label
+            className="diagnostic-label"
+            htmlFor="enlaceMarca"
+          >
+            ¿Quieres mostrarnos tu marca antes de hablar?
+            <span className="diagnostic-optional">
+              Opcional
+            </span>
+          </label>
+
+          <input
+            id="enlaceMarca"
+            name="enlaceMarca"
+            type="url"
+            value={
+              formData.enlaceMarca
+            }
+            onChange={handleChange}
+            placeholder="Instagram, página web o enlace"
+          />
+        </div>
+
+        <div className="diagnostic-step">
+          <div className="diagnostic-label">
+            ¿Dónde prefieres que te contactemos?
+          </div>
+
+          <div className="diagnostic-contact-options">
+            <div className="diagnostic-contact">
+              <input
+                id="contact-whatsapp"
+                type="radio"
+                name="canal"
+                value="whatsapp"
+                checked={
+                  formData.canal ===
+                  'whatsapp'
+                }
+                onChange={handleChange}
+              />
+
+              <label htmlFor="contact-whatsapp">
+                <span className="diagnostic-radio" />
+                WhatsApp
+              </label>
+            </div>
+
+            <div className="diagnostic-contact">
+              <input
+                id="contact-correo"
+                type="radio"
+                name="canal"
+                value="correo"
+                checked={
+                  formData.canal ===
+                  'correo'
+                }
+                onChange={handleChange}
+              />
+
+              <label htmlFor="contact-correo">
+                <span className="diagnostic-radio" />
+                Correo
+              </label>
+            </div>
+          </div>
+
+          {formData.canal ===
+            'whatsapp' && (
+            <input
+              name="whatsapp"
+              type="tel"
+              value={
+                formData.whatsapp
+              }
+              onChange={handleChange}
+              placeholder="Ej: +57 300 123 4567"
+              required
+            />
+          )}
+
+          {formData.canal ===
+            'correo' && (
+            <input
+              name="correo"
+              type="email"
+              value={formData.correo}
+              onChange={handleChange}
+              placeholder="Ej: hola@minegocio.com"
+              required
+            />
+          )}
+        </div>
+
+        <div className="diagnostic-submit">
+          <button
+            className="btn btn-primary"
+            type="submit"
+            disabled={submitting}
+          >
+            {submitting
+              ? 'Enviando...'
+              : 'Quiero que revisen mi marca →'}
+          </button>
+
+          <p className="diagnostic-note">
+            Revisaremos lo que nos envíes y te contactaremos por el medio que elegiste.
+          </p>
+        </div>
+
+        {submitted && (
+          <div className="form-note success">
+            ¡Listo! Recibimos tu solicitud. Te responderemos lo antes posible.
           </div>
         )}
-    </form>
+
+        {errorMessage && (
+          <div className="form-note error">
+            {errorMessage}
+          </div>
+        )}
+
+        <div className="diagnostic-trust">
+          <span>
+            4 preguntas rápidas
+          </span>
+
+          <span>
+            No necesitas saber de branding
+          </span>
+
+          <span>
+            Te respondemos personalmente
+          </span>
+        </div>
+      </form>
+    </>
   );
 }
+
 
 export default function App() {
   useEffect(() => {
