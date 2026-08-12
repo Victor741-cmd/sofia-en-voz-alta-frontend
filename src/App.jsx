@@ -5,6 +5,8 @@ import isotipo from './assets/images/isotipo-sofia-en-voz-alta.png';
 import sofiaFoto from './assets/images/sofia-foto.png';
 import trabajo1 from './assets/images/1.png';
 import trabajo2 from './assets/images/2.png';
+import personaSofia from './assets/images/3.png';
+import personaVictor from './assets/images/4.png';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -436,6 +438,368 @@ function MultiSelectDropdown({
         </div>
       )}
     </div>
+  );
+}
+
+function TeamSection() {
+  return (
+    <>
+      <style>{`
+        .team-section {
+          padding: 120px 0;
+          background: #fffefc;
+        }
+
+        .team-wrap {
+          position: relative;
+        }
+
+        .team-top {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+          gap: 60px;
+          align-items: end;
+        }
+
+        .team-title {
+          margin: 18px 0 0;
+          color: var(--plum);
+          font-size: clamp(3rem, 5.8vw, 6rem);
+          line-height: .92;
+          letter-spacing: -.06em;
+          max-width: 920px;
+        }
+
+        .team-intro {
+          margin: 0 0 8px;
+          color: #554d52;
+          font-size: 1.08rem;
+          line-height: 1.58;
+          max-width: 430px;
+        }
+
+        .team-stage {
+          margin-top: 70px;
+          position: relative;
+          min-height: 820px;
+        }
+
+        .team-line {
+          position: absolute;
+          left: 14%;
+          right: 14%;
+          top: 15%;
+          bottom: 10%;
+          z-index: 1;
+        }
+
+        .team-line svg {
+          width: 100%;
+          height: 100%;
+          overflow: visible;
+        }
+
+        .team-line path {
+          fill: none;
+          stroke: rgba(237, 0, 100, .42);
+          stroke-width: 2.2;
+        }
+
+        .team-core {
+          position: absolute;
+          left: 50%;
+          top: 48%;
+          transform: translate(-50%, -50%);
+          width: 170px;
+          height: 170px;
+          border-radius: 50%;
+          background: var(--plum);
+          color: #fff;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          font-size: .7rem;
+          font-weight: 900;
+          letter-spacing: .1em;
+          text-transform: uppercase;
+          box-shadow: 0 22px 58px rgba(75, 17, 63, .2);
+          z-index: 5;
+        }
+
+        .team-core::after {
+          content: '';
+          position: absolute;
+          width: 220px;
+          height: 220px;
+          border-radius: 50%;
+          border: 1px solid rgba(237, 0, 100, .18);
+        }
+
+        .team-person {
+          position: absolute;
+          display: grid;
+          align-items: center;
+          gap: 28px;
+          z-index: 2;
+        }
+
+        .team-person-sofia {
+          left: 0;
+          top: 0;
+          width: 58%;
+          grid-template-columns: 1.05fr .95fr;
+        }
+
+        .team-person-victor {
+          right: 0;
+          bottom: 0;
+          width: 49%;
+          grid-template-columns: .92fr 1.08fr;
+        }
+
+        .team-photo {
+          overflow: hidden;
+          border-radius: 34px;
+          border: 1px solid rgba(75, 17, 63, .11);
+          box-shadow: 0 26px 75px rgba(75, 17, 63, .10);
+          background: #fff;
+        }
+
+        .team-person-sofia .team-photo {
+          height: 390px;
+        }
+
+        .team-person-victor .team-photo {
+          height: 390px;
+          order: 2;
+        }
+
+        .team-photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .team-person-sofia .team-photo img {
+          object-position: center 22%;
+        }
+
+        .team-person-victor .team-photo img {
+          object-position: center 30%;
+        }
+
+        .team-name {
+          color: var(--plum);
+          font-size: clamp(2.6rem, 4.8vw, 5rem);
+          line-height: .9;
+          letter-spacing: -.055em;
+          font-weight: 900;
+          margin: 0;
+        }
+
+        .team-tag {
+          margin-top: 10px;
+          color: var(--plum);
+          font-size: clamp(1.32rem, 2.1vw, 2rem);
+          line-height: 1.05;
+          letter-spacing: -.03em;
+          font-weight: 850;
+        }
+
+        .team-role {
+          margin-top: 13px;
+          color: var(--rasp);
+          font-size: .73rem;
+          font-weight: 900;
+          letter-spacing: .08em;
+          text-transform: uppercase;
+        }
+
+        .team-desc {
+          margin-top: 17px;
+          color: #5a5156;
+          font-size: .95rem;
+          line-height: 1.58;
+          max-width: 400px;
+        }
+
+        .team-badge {
+          display: inline-flex;
+          margin-top: 16px;
+          padding: 8px 11px;
+          border-radius: 999px;
+          background: #fff2f6;
+          color: var(--plum);
+          font-size: .7rem;
+          font-weight: 850;
+        }
+
+        .team-close {
+          margin-top: 88px;
+          border-top: 1px solid rgba(75, 17, 63, .11);
+          padding-top: 36px;
+          display: grid;
+          grid-template-columns: 1fr 360px;
+          gap: 42px;
+          align-items: end;
+        }
+
+        .team-close h2 {
+          margin: 0;
+          color: var(--plum);
+          font-size: clamp(2.6rem, 5vw, 5.3rem);
+          line-height: .94;
+          letter-spacing: -.052em;
+        }
+
+        .team-close h2 span {
+          color: var(--rasp);
+        }
+
+        .team-close p {
+          margin: 0;
+          color: #746a70;
+          font-size: .95rem;
+          line-height: 1.55;
+        }
+
+        @media (max-width: 1050px) {
+          .team-section {
+            padding: 95px 0;
+          }
+
+          .team-top {
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+
+          .team-stage {
+            min-height: auto;
+            display: grid;
+            gap: 56px;
+          }
+
+          .team-person {
+            position: relative;
+            width: 100%;
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+          }
+
+          .team-person-sofia,
+          .team-person-victor {
+            grid-template-columns: 1fr 1fr;
+          }
+
+          .team-line,
+          .team-core {
+            display: none;
+          }
+        }
+
+        @media (max-width: 720px) {
+          .team-section {
+            padding: 80px 0;
+          }
+
+          .team-title {
+            font-size: clamp(2.9rem, 13vw, 4.7rem);
+          }
+
+          .team-person-sofia,
+          .team-person-victor {
+            grid-template-columns: 1fr;
+          }
+
+          .team-person-sofia .team-photo,
+          .team-person-victor .team-photo {
+            height: 470px;
+          }
+
+          .team-person-victor .team-photo {
+            order: 0;
+          }
+
+          .team-close {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+
+      <section className="team-section">
+        <div className="container team-wrap">
+          <div className="team-top reveal">
+            <div>
+              <span className="eyebrow">Las personas detrás</span>
+              <h2 className="team-title">
+                Esto no lo hace una agencia sin rostro.
+              </h2>
+            </div>
+
+            <p className="team-intro">
+              <strong>Sofía en Voz Alta</strong> está construido por dos personas que combinan criterio de marca, estructura y ejecución para trabajar cada proyecto con cuidado.
+            </p>
+          </div>
+
+          <div className="team-stage reveal">
+            <div className="team-line" aria-hidden="true">
+              <svg viewBox="0 0 1000 700" preserveAspectRatio="none">
+                <path d="M90 170 C260 110,350 280,500 350 C650 420,750 510,910 470" />
+              </svg>
+            </div>
+
+           
+
+            <article className="team-person team-person-sofia">
+              <div className="team-copy">
+                <h3 className="team-name">Sofía</h3>
+                <div className="team-tag">Piensa la marca desde adentro.</div>
+                <div className="team-role">Dirección de marca</div>
+                <p className="team-desc">
+                  Sofía observa, organiza y aterriza lo que un negocio quiere proyectar. Su trabajo no es adornar, sino ayudar a que cada marca tenga sentido, se vea coherente y se sienta propia.
+                </p>
+                <span className="team-badge">Claridad con intención</span>
+              </div>
+
+              <div className="team-photo">
+                <img src={personaSofia} alt="Sofía" />
+              </div>
+            </article>
+
+            <article className="team-person team-person-victor">
+              <div className="team-photo">
+                <img src={personaVictor} alt="Víctor" />
+              </div>
+
+              <div className="team-copy">
+                <h3 className="team-name">Víctor</h3>
+                <div className="team-tag">Pregunta si también funciona en la vida real.</div>
+                <div className="team-role">Estructura y ejecución</div>
+                <p className="team-desc">
+                  Víctor conecta la idea con la realidad. Se fija en cómo aterrizar lo que se define, cómo se usa y cómo se convierte en una experiencia más clara para el negocio y para las personas que lo ven.
+                </p>
+                <span className="team-badge">Ideas que sí aterrizan</span>
+              </div>
+            </article>
+          </div>
+
+          <div className="team-close reveal">
+            <h2>
+              Una piensa cómo debería sentirse la marca.
+              <br />
+              <span>El otro pregunta si también funciona en la vida real.</span>
+            </h2>
+
+            <p>
+              <strong>Creatividad con criterio.</strong> Estructura para llevarla a la realidad.
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -2129,6 +2493,8 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        <TeamSection />
 
         <section
           id="contacto"
